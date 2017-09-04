@@ -151,6 +151,11 @@ function isPayPalExpressEnabled( cart ) {
 			0 <= cart.allowed_payment_methods.indexOf( 'WPCOM_Billing_PayPal_Express' );
 }
 
+function isNetherlandsIdealEnabled( cart ) {
+	return true || config.isEnabled( 'upgrades/netherlands-ideal' ) &&
+	0 <= cart.allowed_payment_methods.indexOf( 'WPCOM_Billing_Netherlands_Ideal' );
+}
+
 module.exports = {
 	applyCoupon,
 	canRemoveFromCart,
@@ -164,5 +169,6 @@ module.exports = {
 	isPaidForFullyInCredits,
 	isPaymentMethodEnabled,
 	isPayPalExpressEnabled,
+	isNetherlandsIdealEnabled,
 	isCreditCardPaymentsEnabled
 };

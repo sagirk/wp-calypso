@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import classnames from 'classnames';
-import { some } from 'lodash';
+import { some, includes } from 'lodash';
 import { localize } from 'i18n-calypso';
 
 /**
@@ -77,12 +77,18 @@ var CreditCardPaymentBox = React.createClass( {
 		}
 	},
 
-	handleToggle: function( event ) {
+	handlePayPalToggle: function( event ) {
 		event.preventDefault();
 
 		analytics.ga.recordEvent( 'Upgrades', 'Clicked Or Use Paypal Link' );
 		analytics.tracks.recordEvent( 'calypso_checkout_switch_to_paypal' );
 		this.props.onToggle( 'paypal' );
+	},
+
+	handleNetherlandsIdealToggle: function( event ) {
+		event.preventDefault();
+
+		this.props.onToggle( 'ideal' );
 	},
 
 	progressBar: function() {
@@ -114,8 +120,19 @@ var CreditCardPaymentBox = React.createClass( {
 					cart={ this.props.cart }
 					transactionStep={ this.props.transactionStep } />
 
-				{ cartValues.isPayPalExpressEnabled( cart )
-					? <a className={ paypalButtonClasses } href="" onClick={ this.handleToggle }>
+				{ this.props.paymentMethods > 1
+					? <span>{ this.props.translate( 'Pay with:' ) }</span>
+					: null
+				}
+
+				{ includes( this.props.paymentMethods, 'ideal' ) && cartValues.isNetherlandsIdealEnabled( cart )
+					? <a className="ideal" href="" onClick={ this.handleNetherlandsIdealToggle }>
+					{ this.props.translate( 'iDEAL' ) }</a>
+					: null
+				}
+
+				{ includes( this.props.paymentMethods, 'paypal' ) && cartValues.isPayPalExpressEnabled( cart )
+					? <a className={ paypalButtonClasses } href="" onClick={ this.handlePayPalToggle }>
 						{ this.props.translate( 'or use {{paypal/}}', {
 							components: {
 								paypal: paypalLinkContent
@@ -178,6 +195,7 @@ var CreditCardPaymentBox = React.createClass( {
 			</form>
 		);
 	},
+
 
 	render: function() {
 		return (

@@ -21,7 +21,8 @@ const DEFAULT_PAYMENT_METHODS = [ 'credit-card', 'paypal' ];
 const paymentMethods = {
 	byLocale: {
 		'de-DE': [ 'paypal', 'credit-card' ],
-		'en-DE': [ 'paypal', 'credit-card' ]
+		'en-DE': [ 'paypal', 'credit-card' ],
+		'nl-NL': [ 'ideal', 'paypal', 'credit-card' ],
 	},
 
 	byCountry: {
