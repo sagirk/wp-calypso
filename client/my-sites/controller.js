@@ -5,7 +5,7 @@ import page from 'page';
 import ReactDom from 'react-dom';
 import React from 'react';
 import i18n from 'i18n-calypso';
-import { uniq, some, startsWith } from 'lodash';
+import { union, uniq, some, startsWith } from 'lodash';
 
 /**
  * Internal Dependencies
@@ -59,6 +59,7 @@ import {
 } from 'my-sites/domains/paths';
 import SitesComponent from 'my-sites/sites';
 import { isATEnabled } from 'lib/automated-transfer';
+import { getPrimaryDomainBySiteId } from 'state/sites/domains/selectors';
 
 /*
  * @FIXME Shorthand, but I might get rid of this.
@@ -150,7 +151,7 @@ function renderSelectedSiteIsDomainOnly( reactContext, selectedSite ) {
 	const { store: reduxStore } = reactContext;
 
 	renderWithReduxStore( (
-			<DomainOnly domainName={ selectedSite.slug } siteId={ selectedSite.ID } hasNotice={ false } />
+			<DomainOnly siteId={ selectedSite.ID } hasNotice={ false } />
 		),
 		document.getElementById( 'primary' ),
 		reduxStore
@@ -163,8 +164,8 @@ function renderSelectedSiteIsDomainOnly( reactContext, selectedSite ) {
 	);
 }
 
-function isPathAllowedForDomainOnlySite( path, domainName ) {
-	const domainManagementPaths = [
+function isPathAllowedForDomainOnlySite( path, slug, primaryDomain ) {
+	const allPaths = [
 		domainManagementAddGoogleApps,
 		domainManagementContactsPrivacy,
 		domainManagementDns,
@@ -179,15 +180,24 @@ function isPathAllowedForDomainOnlySite( path, domainName ) {
 		domainManagementTransfer,
 		domainManagementTransferOut,
 		domainManagementTransferToOtherSite
-	].map( pathFactory => pathFactory( domainName, domainName ) );
+	];
+
+	let domainManagementPaths = allPaths.map( pathFactory => pathFactory( slug, slug ) );
+
+	if ( primaryDomain && slug !== primaryDomain.name ) {
+		domainManagementPaths = union(
+			domainManagementPaths,
+			allPaths.map( pathFactory => pathFactory( slug, primaryDomain.name ) )
+		);
+	}
 
 	const otherPaths = [
-			`/checkout/${ domainName }`
-		],
-		startsWithPaths = [
-			'/checkout/thank-you',
-			`/me/purchases/${ domainName }`
-		];
+		`/checkout/${ slug }`
+	];
+	const startsWithPaths = [
+		'/checkout/thank-you',
+		`/me/purchases/${ slug }`
+	];
 
 	if ( some( startsWithPaths, startsWithPath => startsWith( path, startsWithPath ) ) ) {
 		return true;
@@ -209,8 +219,9 @@ function onSelectedSiteAvailable( context ) {
 
 	context.store.dispatch( setSelectedSiteId( selectedSite.ID ) );
 
+	const primaryDomain = getPrimaryDomainBySiteId( getState(), selectedSite.ID );
 	if ( isDomainOnlySite( getState(), selectedSite.ID ) &&
-		! isPathAllowedForDomainOnlySite( context.pathname, selectedSite.slug ) ) {
+		! isPathAllowedForDomainOnlySite( context.pathname, selectedSite.slug, primaryDomain ) ) {
 		renderSelectedSiteIsDomainOnly( context, selectedSite );
 		return false;
 	}
