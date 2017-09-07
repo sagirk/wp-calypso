@@ -14,7 +14,7 @@ import FreeTrialConfirmationBox from './free-trial-confirmation-box';
 import FreeCartPaymentBox from './free-cart-payment-box';
 import CreditCardPaymentBox from './credit-card-payment-box';
 import PayPalPaymentBox from './paypal-payment-box';
-import IdealPaymentBox from './ideal-payment-box';
+import SourcePaymentBox from './source-payment-box';
 
 import storeTransactions from 'lib/store-transactions';
 import analytics from 'lib/analytics';
@@ -188,7 +188,7 @@ const SecurePaymentForm = React.createClass( {
 				initialCard={ this.getInitialCard() }
 				paymentMethods={ this.props.paymentMethods }
 				selectedSite={ this.props.selectedSite }
-				onToggle={ this.selectPaymentBox }
+				onSelectPaymentMethod={ this.selectPaymentBox }
 				onSubmit={ this.handlePaymentBoxSubmit }
 				transactionStep={ this.props.transaction.step } />
 		);
@@ -202,15 +202,19 @@ const SecurePaymentForm = React.createClass( {
 				countriesList={ countriesListForPayments }
 				selectedSite={ this.props.selectedSite }
 				paymentMethods={ this.props.paymentMethods }
-				onToggle={ this.selectPaymentBox }
+				onSelectPaymentMethod={ this.selectPaymentBox }
 				redirectTo={ this.props.redirectTo } />
 		);
 	},
 
-	renderIdealPaymentBox() {
+	renderSourcePaymentBox( paymentType ) {
 		return (
-			<IdealPaymentBox
-				onToggle={ this.selectPaymentBox } />
+			<SourcePaymentBox
+				cart={ this.props.cart }
+				transaction={ this.props.transaction }
+				paymentMethods={ this.props.paymentMethods }
+				paymentType={ paymentType }
+				onSelectPaymentMethod={ this.selectPaymentBox } />
 		);
 	},
 
@@ -252,7 +256,7 @@ const SecurePaymentForm = React.createClass( {
 				return this.renderPayPalPaymentBox();
 
 			case 'ideal':
-				return this.renderIdealPaymentBox();
+				return this.renderSourcePaymentBox( visiblePaymentBox );
 
 			default:
 				debug( 'WARN: %o payment unknown', visiblePaymentBox );

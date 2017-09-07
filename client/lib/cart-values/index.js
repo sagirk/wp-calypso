@@ -155,7 +155,7 @@ function isPayPalExpressEnabled( cart ) {
 
 function isNetherlandsIdealEnabled( cart ) {
 	return config.isEnabled( 'upgrades/netherlands-ideal' ) &&
-		cart.allowed_payment_methods.indexOf( 'WPCOM_Billing_Stripe_Ideal' ) >= 0;
+		cart.allowed_payment_methods.indexOf( 'WPCOM_Billing_Stripe_Source_Ideal' ) >= 0;
 }
 
 module.exports = {

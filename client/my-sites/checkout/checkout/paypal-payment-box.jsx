@@ -1,7 +1,6 @@
 /**
  * External dependencies
  */
-import classnames from 'classnames';
 import { assign, some } from 'lodash';
 const React = require( 'react' );
 
@@ -24,6 +23,7 @@ import PaymentChatButton from './payment-chat-button';
 import config from 'config';
 import { PLAN_BUSINESS } from 'lib/plans/constants';
 import CartToggle from './cart-toggle';
+import AlternativePaymentMethods from './alternative-payment-methods';
 
 module.exports = React.createClass( {
 	displayName: 'PaypalPaymentBox',
@@ -69,7 +69,7 @@ module.exports = React.createClass( {
 
 	redirectToPayPal: function( event ) {
 		var cart, transaction, dataForApi,
-			origin = this.getLocationOrigin( window.location );
+			origin = this.getLocationOrigin( location );
 		event.preventDefault();
 
 		cart = this.props.cart;
@@ -143,9 +143,6 @@ module.exports = React.createClass( {
 			config.isEnabled( 'upgrades/presale-chat' ) &&
 			abtest( 'presaleChatButton' ) === 'showChatButton' &&
 			hasBusinessPlanInCart;
-		const creditCardButtonClasses = classnames( 'credit-card-payment-box__switch-link', {
-			'credit-card-payment-box__switch-link-left': showPaymentChatButton
-		} );
 		return (
 			<form onSubmit={ this.redirectToPayPal }>
 				<div className="payment-box-section">
@@ -178,13 +175,12 @@ module.exports = React.createClass( {
 						<SubscriptionText cart={ this.props.cart } />
 					</div>
 
-					{ cartValues.isCreditCardPaymentsEnabled( this.props.cart ) &&
-						<a href="" className={ creditCardButtonClasses } onClick={ this.handleToggle }>
-							{ this.translate( 'or use a credit card', {
-								context: 'Upgrades: PayPal checkout screen',
-								comment: 'Checkout with PayPal -- or use a credit card'
-							} ) }
-						</a> }
+					<AlternativePaymentMethods
+						cart={ this.props.cart }
+						paymentMethods={ this.props.paymentMethods }
+						selectedPaymentMethod="paypal"
+						onSelectPaymentMethod={ this.props.onSelectPaymentMethod }
+						/>
 
 					{
 						showPaymentChatButton &&
