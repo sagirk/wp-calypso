@@ -1576,7 +1576,7 @@
       "dev": true
     },
     "electron-to-chromium": {
-      "version": "1.3.20"
+      "version": "1.3.21"
     },
     "element-class": {
       "version": "0.2.2"
@@ -1828,6 +1828,8 @@
     },
     "eslines": {
       "version": "1.1.0",
+      "from": "git://github.com/automattic/eslines.git#ac6bbad0d6e082379d728b094bd2e7e896a6f6a8",
+      "resolved": "git://github.com/automattic/eslines.git#ac6bbad0d6e082379d728b094bd2e7e896a6f6a8",
       "dev": true,
       "dependencies": {
         "fast-levenshtein": {
@@ -1845,49 +1847,131 @@
       }
     },
     "eslint": {
-      "version": "3.8.1",
+      "version": "4.6.1",
       "dev": true,
       "dependencies": {
+        "ansi-escapes": {
+          "version": "2.0.0",
+          "dev": true
+        },
+        "ansi-regex": {
+          "version": "3.0.0",
+          "dev": true
+        },
+        "ansi-styles": {
+          "version": "3.2.0",
+          "dev": true
+        },
         "chalk": {
-          "version": "1.1.3",
+          "version": "2.1.0",
+          "dev": true
+        },
+        "cli-cursor": {
+          "version": "2.1.0",
           "dev": true
         },
         "cli-width": {
           "version": "2.2.0",
           "dev": true
         },
-        "doctrine": {
-          "version": "1.5.0",
+        "concat-stream": {
+          "version": "1.6.0",
+          "dev": true
+        },
+        "debug": {
+          "version": "2.6.8",
+          "dev": true
+        },
+        "escape-string-regexp": {
+          "version": "1.0.5",
+          "dev": true
+        },
+        "figures": {
+          "version": "2.0.0",
+          "dev": true
+        },
+        "glob": {
+          "version": "7.1.2",
+          "dev": true
+        },
+        "has-flag": {
+          "version": "2.0.0",
+          "dev": true
+        },
+        "inherits": {
+          "version": "2.0.3",
           "dev": true
         },
         "inquirer": {
-          "version": "0.12.0",
+          "version": "3.2.3",
           "dev": true
         },
-        "strip-bom": {
-          "version": "3.0.0",
+        "is-fullwidth-code-point": {
+          "version": "2.0.0",
           "dev": true
         },
-        "strip-json-comments": {
-          "version": "1.0.4",
+        "lodash": {
+          "version": "4.17.4",
+          "dev": true
+        },
+        "ms": {
+          "version": "2.0.0",
+          "dev": true
+        },
+        "mute-stream": {
+          "version": "0.0.7",
+          "dev": true
+        },
+        "onetime": {
+          "version": "2.0.1",
+          "dev": true
+        },
+        "readable-stream": {
+          "version": "2.3.3",
+          "dev": true
+        },
+        "restore-cursor": {
+          "version": "2.0.0",
+          "dev": true
+        },
+        "run-async": {
+          "version": "2.3.0",
+          "dev": true
+        },
+        "rx-lite": {
+          "version": "4.0.8",
+          "dev": true
+        },
+        "semver": {
+          "version": "5.4.1",
+          "dev": true
+        },
+        "string_decoder": {
+          "version": "1.0.3",
+          "dev": true
+        },
+        "string-width": {
+          "version": "2.1.1",
+          "dev": true
+        },
+        "strip-ansi": {
+          "version": "4.0.0",
           "dev": true
         },
         "supports-color": {
-          "version": "2.0.0",
-          "dev": true
-        },
-        "user-home": {
-          "version": "2.0.0",
+          "version": "4.4.0",
           "dev": true
         }
       }
     },
     "eslint-config-wpcalypso": {
-      "version": "0.8.0",
+      "version": "1.0.0",
       "dev": true
     },
     "eslint-eslines": {
       "version": "0.0.6",
+      "from": "git://github.com/automattic/eslint-eslines.git#2fc3d81c633c3ec134a78847ecd6d55fd0d29e4b",
+      "resolved": "git://github.com/automattic/eslint-eslines.git#2fc3d81c633c3ec134a78847ecd6d55fd0d29e4b",
       "dev": true
     },
     "eslint-plugin-react": {
@@ -1895,7 +1979,11 @@
       "dev": true
     },
     "eslint-plugin-wpcalypso": {
-      "version": "3.4.1",
+      "version": "4.0.0",
+      "dev": true
+    },
+    "eslint-scope": {
+      "version": "3.7.1",
       "dev": true
     },
     "esmangle-evaluator": {
@@ -1913,6 +2001,10 @@
     },
     "esprima": {
       "version": "3.1.3"
+    },
+    "esquery": {
+      "version": "1.0.0",
+      "dev": true
     },
     "esrecurse": {
       "version": "4.2.0"
@@ -1998,6 +2090,16 @@
     },
     "extend": {
       "version": "3.0.1"
+    },
+    "external-editor": {
+      "version": "2.0.4",
+      "dev": true,
+      "dependencies": {
+        "iconv-lite": {
+          "version": "0.4.18",
+          "dev": true
+        }
+      }
     },
     "extglob": {
       "version": "0.3.2",
@@ -2684,6 +2786,10 @@
     },
     "function-bind": {
       "version": "1.1.1"
+    },
+    "functional-red-black-tree": {
+      "version": "1.0.1",
+      "dev": true
     },
     "fuse.js": {
       "version": "2.6.1"
@@ -3748,6 +3854,10 @@
     "jsbn": {
       "version": "0.1.1",
       "optional": true
+    },
+    "jschardet": {
+      "version": "1.5.1",
+      "dev": true
     },
     "jscodeshift": {
       "version": "0.3.30",
@@ -4863,7 +4973,7 @@
       "dev": true
     },
     "pluralize": {
-      "version": "1.2.1",
+      "version": "4.0.0",
       "dev": true
     },
     "postcss": {
@@ -5088,7 +5198,7 @@
       "version": "1.0.7"
     },
     "progress": {
-      "version": "1.1.8",
+      "version": "2.0.0",
       "dev": true
     },
     "progress-event": {
@@ -5208,6 +5318,14 @@
       "resolved": "git://github.com/reactjs/react-codemod.git#d8a1d474b6b208cfdbec339b672617270ef78ac5",
       "dev": true,
       "dependencies": {
+        "ajv": {
+          "version": "4.11.8",
+          "dev": true
+        },
+        "ajv-keywords": {
+          "version": "1.5.1",
+          "dev": true
+        },
         "chalk": {
           "version": "1.1.3",
           "dev": true
@@ -5232,6 +5350,18 @@
           "version": "0.12.0",
           "dev": true
         },
+        "is-fullwidth-code-point": {
+          "version": "2.0.0",
+          "dev": true
+        },
+        "pluralize": {
+          "version": "1.2.1",
+          "dev": true
+        },
+        "progress": {
+          "version": "1.1.8",
+          "dev": true
+        },
         "strip-json-comments": {
           "version": "1.0.4",
           "dev": true
@@ -5239,6 +5369,24 @@
         "supports-color": {
           "version": "2.0.0",
           "dev": true
+        },
+        "table": {
+          "version": "3.8.3",
+          "dev": true,
+          "dependencies": {
+            "ansi-regex": {
+              "version": "3.0.0",
+              "dev": true
+            },
+            "string-width": {
+              "version": "2.1.1",
+              "dev": true
+            },
+            "strip-ansi": {
+              "version": "4.0.0",
+              "dev": true
+            }
+          }
         },
         "user-home": {
           "version": "2.0.0",
@@ -5644,6 +5792,10 @@
     },
     "rx-lite": {
       "version": "3.1.2",
+      "dev": true
+    },
+    "rx-lite-aggregates": {
+      "version": "4.0.8",
       "dev": true
     },
     "safe-buffer": {
@@ -6056,6 +6208,18 @@
       "version": "6.9.0",
       "dev": true,
       "dependencies": {
+        "ajv": {
+          "version": "4.11.8",
+          "dev": true
+        },
+        "ajv-keywords": {
+          "version": "1.5.1",
+          "dev": true
+        },
+        "ansi-regex": {
+          "version": "3.0.0",
+          "dev": true
+        },
         "balanced-match": {
           "version": "0.4.2",
           "dev": true
@@ -6078,6 +6242,10 @@
         },
         "htmlparser2": {
           "version": "3.9.2",
+          "dev": true
+        },
+        "is-fullwidth-code-point": {
+          "version": "2.0.0",
           "dev": true
         },
         "postcss-less": {
@@ -6109,6 +6277,20 @@
         "supports-color": {
           "version": "2.0.0",
           "dev": true
+        },
+        "table": {
+          "version": "3.8.3",
+          "dev": true,
+          "dependencies": {
+            "string-width": {
+              "version": "2.1.1",
+              "dev": true
+            },
+            "strip-ansi": {
+              "version": "4.0.0",
+              "dev": true
+            }
+          }
         }
       }
     },
@@ -6166,7 +6348,7 @@
       "dev": true
     },
     "table": {
-      "version": "3.8.3",
+      "version": "4.0.1",
       "dev": true,
       "dependencies": {
         "ajv": {
@@ -6286,6 +6468,10 @@
     },
     "title-case-minors": {
       "version": "0.0.2"
+    },
+    "tmp": {
+      "version": "0.0.31",
+      "dev": true
     },
     "tmpl": {
       "version": "1.0.4",
